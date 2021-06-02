@@ -1,7 +1,6 @@
 'use strict'
 
 const internals = {
-  siteUrl: 'http://vend-mag.ru'
 }
 
 const showdown = require('showdown')
@@ -89,8 +88,14 @@ const processPubSection = async (pubSection, img, clickImg) => {
   }
 }
 
-module.exports = {
-  setSiteUrl,
-  makeTextBlock,
-  processPubSection
+module.exports = ({url} = {}) => {
+  if (!url || typeof url !== 'string') {
+    throw new Error('pub_maker url must be set and be a string')
+  }
+  setSiteUrl(url)
+  return {
+    setSiteUrl,
+    makeTextBlock,
+    processPubSection
+  }
 }

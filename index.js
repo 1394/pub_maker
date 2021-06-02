@@ -4,6 +4,9 @@ const internals = {
   siteUrl: 'http://vend-mag.ru'
 }
 
+const showdown = require('showdown')
+const converter = new showdown.Converter()
+
 const setSiteUrl = (url) => {
   internals.siteUrl = url
 }
@@ -54,6 +57,11 @@ let makeTextBlock = (section) => {
       return el
     }).join(' ')
   }).join('<br />')
+  try {
+    lines = converter.makeHtml(lines)
+  } catch (ex) {
+    console.error(ex)
+  }
   return `${title || ''}<div class='pub-abzac'>${lines}</div>`
 }
 

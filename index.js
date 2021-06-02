@@ -36,12 +36,17 @@ const decoders = [
   }
 ]
 
-let makeTextBlock = (section) => {
+let makeTextBlock = (section, {markdown} = {}) => {
   let text = section.get('block')
   let title = section.get('title')
   if (title && title.length) {
     title = `<h2>${title}</h2>`
   }
+
+  if (markdown) {
+    text = converter.makeHtml(text)
+  }
+
   let lines = text.split('\n')
   lines = lines.map(line => {
     return line.split(' ').map(el => {

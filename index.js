@@ -69,9 +69,9 @@ let makeTextBlock = (section, {markdown} = {}) => {
   return `${title || ''}<div class='pub-abzac'>${lines}</div>`
 }
 
-const processPubSection = async (pubSection, img, clickImg) => {
+const processPubSection = async (pubSection, img, clickImg, opts) => {
   if (pubSection.get('blocktype') === 'text') {
-    return makeTextBlock(pubSection)
+    return makeTextBlock(pubSection, opts)
   }
   if (pubSection.get('blocktype') === 'photo') {
     if (img) {

@@ -60,7 +60,7 @@ let makeTextBlock = (section, {markdown} = {}) => {
       }
       return el
     }).join(' ')
-  }).join('<br />')
+  }).join(markdown ? '' : '<br />')
   try {
     lines = converter.makeHtml(lines)
   } catch (ex) {

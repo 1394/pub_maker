@@ -36,7 +36,7 @@ const decoders = [
   }
 ]
 
-let makeTextBlock = (section, {markdown} = {}) => {
+const makeTextBlock = (section, {markdown} = {}) => {
   let text = section.get('block')
   let title = section.get('title')
   if (title && title.length) {
@@ -61,11 +61,11 @@ let makeTextBlock = (section, {markdown} = {}) => {
       return el
     }).join(' ')
   }).join(markdown ? '' : '<br />')
-  try {
-    lines = converter.makeHtml(lines)
-  } catch (ex) {
-    console.error(ex)
-  }
+  // try {
+  //   lines = converter.makeHtml(lines)
+  // } catch (ex) {
+  //   console.error(ex)
+  // }
   return `${title || ''}<div class='pub-abzac'>${lines}</div>`
 }
 

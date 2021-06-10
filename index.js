@@ -45,6 +45,7 @@ const makeTextBlock = (section, {markdown} = {}) => {
 
   if (markdown) {
     text = converter.makeHtml(text)
+    return `${title || ''}<div class='pub-abzac'>${text}</div>`
   }
 
   let lines = text.split('\n')
@@ -60,7 +61,7 @@ const makeTextBlock = (section, {markdown} = {}) => {
       }
       return el
     }).join(' ')
-  }).join(markdown ? '' : '<br />')
+  }).join('<br />')
   // try {
   //   lines = converter.makeHtml(lines)
   // } catch (ex) {
